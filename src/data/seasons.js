@@ -17,14 +17,14 @@ const seasons = [
     runnerUpImage: "/images/gallery/signal-2026-09-08-14-57-16-873.jpg",
     awards: {
       playerOfSeries: {
-        name: "Yuvraj Singh",
+        name: "Dinesh Nath",
         team: "Krishna Travels",
         image: "/images/POTM-2026.jpg",
         description:
           "Yuvraj Singh was the standout performer of KPL Season 2, consistently delivering match-winning performances with both bat and ball throughout the tournament. A well-deserved Player of the Tournament award.",
       },
       bestBatsman: {
-        name: "Dinesh Nath",
+        name: "Yuvraj Singh Rathore",
         team: "Krishna Travels",
         image: "/images/BEST-BETSMAN-2026.jpg",
         description:
