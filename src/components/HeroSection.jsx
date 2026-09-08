@@ -1,71 +1,143 @@
 import { Link } from 'react-router-dom';
+import seasons from '../data/seasons';
 
 export default function HeroSection() {
+  const latestSeason = seasons[0]; // KPL 2026
+
+  const handleScrollToSnapshot = (e) => {
+    e.preventDefault();
+    const el = document.getElementById('snapshot');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="relative bg-navy overflow-hidden">
-      {/* Background Image with slow pan */}
-      <div className="absolute inset-0">
+    <section className="relative min-h-[82vh] sm:min-h-[88vh] lg:min-h-[92vh] flex items-center justify-center overflow-hidden bg-slate-950 text-white">
+      {/* ─── High-Quality Cricket Ground Photographic Background ─── */}
+      <div className="absolute inset-0 pointer-events-none">
         <img
           src="/images/hero/hero-bg.jpg"
-          alt="Village cricket match at Kundalgarh"
-          className="w-full h-full object-cover animate-bg-pan"
+          alt="Kundalgarh Cricket Ground Pitch and Match Atmosphere"
+          className="w-full h-full object-cover object-center scale-105 animate-bg-pan opacity-35"
         />
-        <div className="absolute inset-0 bg-navy/75" />
+
+        {/* Dark Cinematic Gradient Overlays for High Legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/90" />
+        <div className="absolute inset-0 bg-radial-at-c from-transparent via-slate-950/60 to-slate-950" />
+
+        {/* Stadium Floodlight Ambiance */}
+        <div
+          className="absolute -top-16 left-1/4 w-96 h-96 rounded-full bg-cyan-500/15 blur-[100px] animate-float"
+          style={{ animationDelay: '0s' }}
+        />
+        <div
+          className="absolute top-20 right-1/4 w-96 h-96 rounded-full bg-amber-500/15 blur-[110px] animate-float"
+          style={{ animationDelay: '2s' }}
+        />
+        <div className="absolute -bottom-10 inset-x-0 h-32 bg-gradient-to-t from-slate-950 to-transparent" />
       </div>
 
-      {/* Decorative floating orbs */}
-      <div className="absolute top-16 right-12 w-32 h-32 rounded-full bg-blue-500/10 blur-3xl animate-float" style={{ animationDelay: '0s' }} />
-      <div className="absolute bottom-20 right-32 w-24 h-24 rounded-full bg-brand-500/10 blur-2xl animate-float" style={{ animationDelay: '1.5s' }} />
-      <div className="absolute top-1/2 left-8 w-16 h-16 rounded-full bg-white/5 blur-xl animate-float" style={{ animationDelay: '0.8s' }} />
+      {/* ─── Hero Content Container ─────────────────────────────── */}
+      <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6 pt-24 pb-14 sm:pt-28 sm:pb-16 flex flex-col items-center text-center">
 
-      {/* Content */}
-      <div className="relative max-w-content mx-auto px-4 sm:px-6 py-16 sm:py-24 lg:py-28">
-        <div className="max-w-2xl">
-
-          {/* Badge — fades in first */}
-          <div className="animate-fade-up delay-100 inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
-            <div className="w-5 h-5 bg-white rounded flex items-center justify-center">
-              <span className="text-navy font-bold text-[8px]">KPL</span>
+        {/* Prominently Visible KPL Logo & Est. 2025 Badge */}
+        <div className="animate-fade-up delay-100 flex flex-col sm:flex-row items-center gap-3 mb-6">
+          <div className="relative">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1 bg-gradient-to-tr from-amber-400 via-white/20 to-brand-500 shadow-2xl cricket-glow-amber">
+              <img
+                src="/images/logo.jpg.png"
+                alt="Kundalgarh Premier League Official Logo"
+                className="w-full h-full object-contain rounded-full bg-slate-950 p-1"
+              />
             </div>
-            <span className="text-white/90 text-sm font-medium">Since 2025</span>
+            <span className="absolute -bottom-1 -right-1 px-2 py-0.5 bg-amber-500 text-slate-950 font-black text-[9px] uppercase tracking-wider rounded-full shadow-md">
+              KPL
+            </span>
           </div>
 
-          {/* Heading — shimmer gradient */}
-          <h1 className="animate-fade-up delay-200 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 shimmer-text">
-            Kundalgarh<br />Premier League
-          </h1>
-
-          {/* Subtitle */}
-          <p className="animate-fade-up delay-300 text-lg sm:text-xl text-blue-200 font-medium mb-3">
-            Celebrating Cricket, Champions, and Memories
-          </p>
-
-          {/* Description */}
-          <p className="animate-fade-up delay-400 text-white/70 text-sm sm:text-base leading-relaxed mb-8 max-w-lg">
-            Explore the history of every KPL season — from winners and records to tournament
-            photographs and unforgettable moments on the field.
-          </p>
-
-          {/* Buttons */}
-          <div className="animate-fade-up delay-500 flex flex-col sm:flex-row gap-3">
-            <Link
-              to="/season/2026"
-              className="btn-pulse inline-flex items-center justify-center px-6 py-3 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 transition-all duration-300 hover:scale-105 text-sm shadow-lg shadow-brand-600/30"
-            >
-              Explore Seasons
-              <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-            <Link
-              to="/gallery"
-              className="inline-flex items-center justify-center px-6 py-3 bg-white/10 border border-white/20 text-white font-medium rounded-lg hover:bg-white/20 hover:scale-105 transition-all duration-300 text-sm"
-            >
-              View Gallery
-            </Link>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold text-slate-200">
+            <span className="text-amber-400 text-sm">🏏</span>
+            <span className="tracking-widest uppercase font-bold text-amber-300">EST. 2025</span>
+            <span className="text-slate-500">•</span>
+            <span className="text-slate-300">VILLAGE CRICKET CHAMPIONSHIP</span>
           </div>
         </div>
+
+        {/* Main Tournament Heading */}
+        <h1 className="animate-fade-up delay-200 font-sports font-black uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] max-w-4xl mb-4">
+          <span className="text-white block">Kundalgarh</span>
+          <span className="gold-gradient-text block drop-shadow-md">Premier League</span>
+        </h1>
+
+        {/* Headline / Subheadline: "Cricket. Champions. Community." */}
+        <div className="animate-fade-up delay-300 flex items-center justify-center gap-2 sm:gap-3 text-lg sm:text-2xl lg:text-3xl font-sports font-bold uppercase tracking-wider text-cyan-200 mb-4">
+          <span>Cricket</span>
+          <span className="text-amber-400">•</span>
+          <span>Champions</span>
+          <span className="text-amber-400">•</span>
+          <span>Community</span>
+        </div>
+
+        {/* Supporting Text */}
+        <p className="animate-fade-up delay-400 text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mb-8">
+          Celebrating the passion, players, teams and unforgettable moments of Kundalgarh cricket.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="animate-fade-up delay-500 flex flex-col sm:flex-row items-center gap-3.5 mb-10 w-full sm:w-auto">
+          <a
+            href="#snapshot"
+            onClick={handleScrollToSnapshot}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm uppercase tracking-wider rounded-xl transition-all duration-300 hover:scale-105 shadow-xl shadow-amber-500/25 cricket-glow-amber cursor-pointer"
+          >
+            <span>🏏</span>
+            <span>Explore KPL</span>
+            <svg className="w-4 h-4 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+
+          <Link
+            to="/season/2026"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm uppercase tracking-wider rounded-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+          >
+            <span>🏆</span>
+            <span>View Seasons</span>
+          </Link>
+        </div>
+
+        {/* Real Tournament Live / Status Area (Using Existing Data Only) */}
+        {latestSeason && (
+          <div className="animate-fade-up delay-600 w-full max-w-xl stadium-glass-gold rounded-2xl p-3 sm:p-4 border border-amber-500/30 shadow-2xl">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2.5">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-live-pulse" />
+                <span className="font-sports font-bold text-sm uppercase tracking-wider text-amber-300">
+                  {latestSeason.title} &bull; Season Completed
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-xs">
+                <span className="text-slate-300">Champions:</span>
+                <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-bold border border-amber-400/30">
+                  🏆 {latestSeason.winner}
+                </span>
+              </div>
+            </div>
+            <div className="mt-2 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">
+              <span>📍 {latestSeason.venue}</span>
+              <span>🥈 Runner-Up: {latestSeason.runnerUp}</span>
+              <Link to={`/season/${latestSeason.id}`} className="text-amber-400 hover:underline font-semibold">
+                Details &rarr;
+              </Link>
+            </div>
+          </div>
+        )}
+
       </div>
+
+      {/* Subtle Bottom Boundary-Line Accent */}
+      <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-emerald-500 via-amber-400 to-cyan-500 opacity-70" />
     </section>
   );
 }
