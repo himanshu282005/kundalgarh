@@ -190,6 +190,79 @@ export default function SeasonDetails() {
         </section>
       )}
 
+      {/* Live Streams Section */}
+      {season.liveStreams && season.liveStreams.length > 0 && (
+        <section className="py-10 sm:py-14 bg-navy-dark text-white relative overflow-hidden">
+          {/* Subtle background glow */}
+          <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-red-600/10 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-brand-500/10 blur-3xl pointer-events-none" />
+
+          <div className="relative max-w-content mx-auto px-4 sm:px-6">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/30 rounded-full px-3 py-1 mb-3">
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                <span className="text-xs font-bold text-red-400 uppercase tracking-wider">YouTube Live Broadcasts</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                Watch Tournament Live Matches
+              </h2>
+              <div className="h-1 w-14 bg-gradient-to-r from-red-500 via-amber-400 to-brand-500 rounded-full mx-auto mt-2.5" />
+              <p className="mt-3 text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+                Catch full match action, ball-by-ball coverage, and tournament moments streamed live on YouTube.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {season.liveStreams.map((stream, idx) => (
+                <div
+                  key={idx}
+                  className="bg-navy/80 border border-white/10 rounded-2xl overflow-hidden shadow-lg flex flex-col hover:border-red-500/40 transition-all duration-300 group"
+                >
+                  <div className="aspect-video w-full bg-black relative">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${stream.videoId}`}
+                      title={stream.title}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-5 flex-1 flex flex-col justify-between bg-white/[0.02]">
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-bold text-amber-400 bg-amber-400/10 border border-amber-400/20 px-2.5 py-0.5 rounded-full">
+                          {stream.day}
+                        </span>
+                        <span className="text-xs text-slate-400 flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />
+                          Live Stream
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-white text-base leading-snug group-hover:text-amber-300 transition-colors">
+                        {stream.title}
+                      </h3>
+                    </div>
+
+                    <a
+                      href={stream.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600/90 hover:bg-red-600 text-white rounded-lg text-xs font-semibold tracking-wide transition-colors shadow-sm"
+                    >
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                      Watch on YouTube
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Season Gallery */}
       <section className="py-10 sm:py-14">
         <div className="max-w-content mx-auto px-4 sm:px-6">
