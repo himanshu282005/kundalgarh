@@ -2,13 +2,13 @@ const galleryImages = [
   {
     id: 1,
     src: "/images/POTM-2026.jpg",
-    alt: "Yuvraj Singh — KPL 2026 Player of the Tournament with Trophy",
+    alt: "Dinesh Nath — KPL 2026 Player of the Tournament with Trophy",
     category: "players",
   },
   {
     id: 2,
     src: "/images/BEST-BETSMAN-2026.jpg",
-    alt: "Dinesh Nath — KPL 2026 Best Batsman with Trophy",
+    alt: "Yuvraj Singh — KPL 2026 Best Batsman with Trophy",
     category: "players",
   },
   {
