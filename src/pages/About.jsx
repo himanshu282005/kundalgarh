@@ -60,12 +60,8 @@ export default function About() {
               </p>
 
               <BilingualPara
-                en="Kundalgarh Premier League (KPL) is an annual cricket tournament organized in the village of Kundalgarh, Rajasthan. Founded in 2023, KPL brings together cricket enthusiasts from the village and surrounding areas to compete in a friendly yet competitive tournament."
-                hi="कुंडलगढ़ प्रीमियर लीग (KPL) राजस्थान के कुंडलगढ़ गाँव में आयोजित एक वार्षिक क्रिकेट टूर्नामेंट है। 2023 में स्थापित, KPL गाँव और आसपास के क्षेत्रों के क्रिकेट प्रेमियों को एक दोस्ताना लेकिन प्रतिस्पर्धी टूर्नामेंट में एक साथ लाता है।"
-              />
-              <BilingualPara
-                en="What started as a small local tournament with five teams has grown into a highly anticipated annual event with eight teams, professional umpiring, and a growing audience of cricket lovers."
-                hi="जो शुरुआत पाँच टीमों के एक छोटे स्थानीय टूर्नामेंट के रूप में हुई, वह अब आठ टीमों, पेशेवर अम्पायरिंग और बढ़ते दर्शकों के साथ एक अत्यधिक प्रतीक्षित वार्षिक आयोजन बन गया है।"
+                en="Kundalgarh Premier League (KPL) is an annual cricket tournament organized in the village of Kundalgarh, Rajasthan. Founded in 2025, KPL brings together cricket enthusiasts from the village to compete in a friendly yet competitive tournament."
+                hi="कुंडलगढ़ प्रीमियर लीग (KPL) राजस्थान के कुंडलगढ़ गाँव में आयोजित एक वार्षिक क्रिकेट टूर्नामेंट है। 2025 में स्थापित, KPL गाँव के क्रिकेट प्रेमियों को एक दोस्ताना लेकिन प्रतिस्पर्धी टूर्नामेंट में एक साथ लाता है।"
               />
               <BilingualPara
                 en="KPL is more than just cricket — it's a celebration of community bonds, local talent, and the spirit of sportsmanship that brings the entire village together every year."
@@ -99,10 +95,10 @@ export default function About() {
                 स्थानीय क्रिकेट को बढ़ावा दें
               </p>
               <p className="text-sm text-gray-600 leading-relaxed mb-2">
-                Give talented cricketers from Kundalgarh and nearby villages a platform to showcase their skills and compete at a competitive level.
+                Give talented cricketers from Kundalgarh a platform to showcase their skills and compete at a competitive level.
               </p>
               <p className="text-xs text-gray-500 leading-relaxed border-t border-orange-100 pt-2 mt-2" style={{ fontFamily: "'Noto Sans Devanagari', 'Mangal', sans-serif" }}>
-                कुंडलगढ़ और आसपास के गाँवों के प्रतिभाशाली क्रिकेटरों को अपने कौशल का प्रदर्शन करने और प्रतिस्पर्धात्मक स्तर पर खेलने का मंच दें।
+                कुंडलगढ़ के प्रतिभाशाली क्रिकेटरों को अपने कौशल का प्रदर्शन करने और प्रतिस्पर्धात्मक स्तर पर खेलने का मंच दें।
               </p>
             </div>
 
@@ -184,11 +180,10 @@ export default function About() {
                 <div key={season.id} className="flex gap-4 animate-fade-up" style={{ animationDelay: `${index * 120}ms` }}>
                   {/* Timeline dot */}
                   <div className="flex flex-col items-center">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0 transition-transform hover:scale-110 ${
-                      index === 0
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0 transition-transform hover:scale-110 ${index === 0
                         ? 'bg-brand-600 text-white shadow-md shadow-brand-600/30'
                         : 'bg-white border-2 border-gray-300 text-gray-500'
-                    }`}>
+                      }`}>
                       {season.year.toString().slice(-2)}
                     </div>
                     {index < seasons.length - 1 && (
