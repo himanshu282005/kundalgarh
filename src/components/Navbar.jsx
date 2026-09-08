@@ -14,14 +14,16 @@ export default function Navbar() {
     }`;
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm animate-slide-down">
       <div className="max-w-content mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-            <div className="w-9 h-9 bg-navy rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">KPL</span>
-            </div>
+          <Link to="/" className="flex items-center gap-2 transition-transform duration-200 hover:scale-105" onClick={() => setIsOpen(false)}>
+            <img
+              src="/images/logo.jpg.png"
+              alt="KPL Logo"
+              className="w-10 h-10 object-contain rounded-lg"
+            />
             <div className="hidden sm:block">
               <span className="text-navy font-bold text-lg leading-tight">KPL</span>
               <span className="text-gray-500 text-xs block leading-tight">Kundalgarh Premier League</span>
@@ -30,7 +32,7 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-1">
-            <NavLink to="/" end className={navLinkClass}>Home</NavLink>
+            <NavLink to="/" end className={navLinkClass}><span className="nav-link-animated">Home</span></NavLink>
 
             {/* Seasons Dropdown */}
             <div className="relative">
@@ -60,8 +62,8 @@ export default function Navbar() {
               )}
             </div>
 
-            <NavLink to="/gallery" className={navLinkClass}>Gallery</NavLink>
-            <NavLink to="/about" className={navLinkClass}>About KPL</NavLink>
+            <NavLink to="/gallery" className={navLinkClass}><span className="nav-link-animated">Gallery</span></NavLink>
+            <NavLink to="/about" className={navLinkClass}><span className="nav-link-animated">About KPL</span></NavLink>
           </div>
 
           {/* Hamburger */}

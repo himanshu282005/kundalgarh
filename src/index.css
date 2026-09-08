@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -14,20 +14,151 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* ─── Keyframes ─────────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-::-webkit-scrollbar-thumb {
-  background: #94a3b8;
-  border-radius: 4px;
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+  50%       { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0.15); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes trophyBounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25%       { transform: translateY(-6px) rotate(-4deg); }
+  75%       { transform: translateY(-6px) rotate(4deg); }
+}
+
+@keyframes bgPan {
+  0%   { transform: scale(1.05) translate(0px, 0px); }
+  50%  { transform: scale(1.05) translate(-8px, -4px); }
+  100% { transform: scale(1.05) translate(0px, 0px); }
+}
+
+/* ─── Animation Utility Classes ─────────────────────── */
+
+.animate-fade-up        { animation: fadeUp      0.6s ease both; }
+.animate-fade-in        { animation: fadeIn      0.5s ease both; }
+.animate-slide-left     { animation: slideInLeft 0.6s ease both; }
+.animate-slide-right    { animation: slideInRight 0.6s ease both; }
+.animate-slide-down     { animation: slideDown   0.5s ease both; }
+.animate-scale-in       { animation: scaleIn     0.5s ease both; }
+.animate-float          { animation: float       3s ease-in-out infinite; }
+.animate-pulse-glow     { animation: pulseGlow   2s ease-in-out infinite; }
+.animate-trophy-bounce  { animation: trophyBounce 2s ease-in-out infinite; }
+.animate-bg-pan         { animation: bgPan       12s ease-in-out infinite; }
+
+/* ─── Staggered Delay Helpers ───────────────────────── */
+
+.delay-100  { animation-delay: 100ms; }
+.delay-200  { animation-delay: 200ms; }
+.delay-300  { animation-delay: 300ms; }
+.delay-400  { animation-delay: 400ms; }
+.delay-500  { animation-delay: 500ms; }
+.delay-600  { animation-delay: 600ms; }
+.delay-700  { animation-delay: 700ms; }
+
+/* ─── Shimmer Gradient Text ─────────────────────────── */
+
+.shimmer-text {
+  background: linear-gradient(90deg, #fff 0%, #93c5fd 40%, #fff 60%, #93c5fd 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ─── Hover card lift ───────────────────────────────── */
+
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* ─── Image zoom on hover ───────────────────────────── */
+
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 0.5s ease;
+}
+.img-zoom:hover img {
+  transform: scale(1.07);
+}
+
+/* ─── Navbar link underline animation ───────────────── */
+
+.nav-link-animated {
+  position: relative;
+}
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.nav-link-animated:hover::after {
+  width: 100%;
+}
+
+/* ─── Button pulse on hover ─────────────────────────── */
+
+.btn-pulse:hover {
+  animation: pulseGlow 1s ease-in-out infinite;
+}
+
+/* ─── Custom scrollbar ──────────────────────────────── */
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #64748b; }
+

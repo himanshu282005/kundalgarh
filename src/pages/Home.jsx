@@ -50,7 +50,7 @@ export default function Home() {
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
                 Kundalgarh Premier League is a celebration of cricket, teamwork, and community spirit.
-                Since 2023, KPL has brought together local talent from Kundalgarh and nearby villages,
+                Since 2025, KPL has brought together local talent from Kundalgarh and nearby villages,
                 creating unforgettable matches and lifelong memories.
               </p>
               <p className="text-gray-600 leading-relaxed">
@@ -102,9 +102,10 @@ export default function Home() {
             {highlights.map((item, index) => (
               <div
                 key={index}
-                className="bg-white border border-gray-200 rounded-xl p-6 text-center hover:shadow-md transition-shadow"
+                className="card-hover bg-white border border-gray-200 rounded-xl p-6 text-center animate-scale-in"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <span className="text-3xl mb-3 block">{item.icon}</span>
+                <span className="text-3xl mb-3 block animate-float" style={{ animationDelay: `${index * 0.4}s` }}>{item.icon}</span>
                 <h3 className="text-base font-bold text-navy mb-2">{item.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{item.description}</p>
               </div>
@@ -124,10 +125,10 @@ export default function Home() {
           <div className="text-center mt-8">
             <Link
               to="/gallery"
-              className="inline-flex items-center px-6 py-3 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 transition-colors text-sm"
+              className="group inline-flex items-center px-6 py-3 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 hover:scale-105 transition-all duration-300 text-sm shadow-md shadow-brand-600/20"
             >
               View Full Gallery
-              <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>

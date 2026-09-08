@@ -14,7 +14,7 @@ export default function Footer() {
               <span className="font-bold text-lg">Kundalgarh Premier League</span>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Celebrating cricket, champions, and community spirit since 2023. KPL is Kundalgarh's
+              Celebrating cricket, champions, and community spirit since 2025. KPL is Kundalgarh's
               premier cricket tournament bringing together local talent and unforgettable moments.
             </p>
           </div>
@@ -39,7 +39,7 @@ export default function Footer() {
               India
             </p>
             <p className="text-gray-400 text-xs mt-4">
-              Organized annually since 2023
+              Organized annually since 2025
             </p>
           </div>
         </div>
