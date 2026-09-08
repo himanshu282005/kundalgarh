@@ -5,7 +5,7 @@ export default function AwardCard({ title, award }) {
         <img
           src={award.image}
           alt={`${award.name} — ${title}`}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-top"
           loading="lazy"
         />
       </div>
