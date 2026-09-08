@@ -19,14 +19,14 @@ const seasons = [
       playerOfSeries: {
         name: "Yuvraj Singh",
         team: "Krishna Travels",
-        image: "/images/gallery/signal-2026-09-08-14-57-16-873_007.jpg",
+        image: "/images/POTM-2026.jpg",
         description:
           "Yuvraj Singh was the standout performer of KPL Season 2, consistently delivering match-winning performances with both bat and ball throughout the tournament. A well-deserved Player of the Tournament award.",
       },
       bestBatsman: {
         name: "Dinesh Nath",
         team: "Krishna Travels",
-        image: "/images/gallery/signal-2026-09-08-14-57-16-873_008.jpg",
+        image: "/images/BEST-BETSMAN-2026.jpg",
         description:
           "Dinesh Nath dominated the batting charts in KPL Season 2, playing some breathtaking innings that left spectators in awe. His elegant stroke play and consistency made him the undisputed Best Batsman of the tournament.",
       },
@@ -53,6 +53,8 @@ const seasons = [
       },
     },
     gallery: [
+      "/images/POTM-2026.jpg",
+      "/images/BEST-BETSMAN-2026.jpg",
       "/images/gallery/signal-2026-09-08-14-57-16-873_006.jpg",
       "/images/gallery/signal-2026-09-08-14-57-16-873_003.jpg",
       "/images/gallery/signal-2026-09-08-14-57-16-873_007.jpg",
@@ -75,13 +77,13 @@ const seasons = [
     teams: 8,
     teamsList: teamsData["2025"] || [],
     matches: 15,
-    winnerImage: "/images/venue/cricket-ground.jpg",
-    runnerUpImage: "/images/hero/hero-bg.jpg",
+    winnerImage: "/images/2025-winner.jpg",
+    runnerUpImage: "/images/signal-2026-09-08-16-31-46-835_003.jpg",
     awards: {
       playerOfSeries: {
         name: "To Be Updated",
         team: "Kanak Building Materials",
-        image: "/images/venue/cricket-ground.jpg",
+        image: "/images/signal-2026-09-08-16-31-46-835_002.jpg",
         description:
           "Player of the Series for KPL Season 1 (2025). Details will be updated soon.",
       },
@@ -115,6 +117,9 @@ const seasons = [
       },
     },
     gallery: [
+      "/images/2025-winner.jpg",
+      "/images/signal-2026-09-08-16-31-46-835_002.jpg",
+      "/images/signal-2026-09-08-16-31-46-835_003.jpg",
       "/images/venue/cricket-ground.jpg",
       "/images/hero/hero-bg.jpg",
     ],
