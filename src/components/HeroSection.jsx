@@ -27,7 +27,7 @@ export default function HeroSection() {
             <div className="w-5 h-5 bg-white rounded flex items-center justify-center">
               <span className="text-navy font-bold text-[8px]">KPL</span>
             </div>
-            <span className="text-white/90 text-sm font-medium">Since 2023</span>
+            <span className="text-white/90 text-sm font-medium">Since 2025</span>
           </div>
 
           {/* Heading — shimmer gradient */}

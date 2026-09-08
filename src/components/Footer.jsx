@@ -44,9 +44,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-10 pt-6 text-center">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-slate-400">
+          <p>
             &copy; {new Date().getFullYear()} Kundalgarh Premier League. All rights reserved.
+          </p>
+          <p className="text-xs text-slate-400 flex items-center gap-1.5">
+            <span>Created by</span>
+            <span className="text-white font-medium bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-full text-[11px] tracking-wide hover:border-brand-500/50 hover:text-brand-400 transition-colors shadow-xs">
+              Himanshu Kalal
+            </span>
           </p>
         </div>
       </div>
