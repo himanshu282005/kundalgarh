@@ -21,14 +21,14 @@ const seasons = [
         team: "Krishna Travels",
         image: "/images/POTM-2026.jpg",
         description:
-          "Yuvraj Singh was the standout performer of KPL Season 2, consistently delivering match-winning performances with both bat and ball throughout the tournament. A well-deserved Player of the Tournament award.",
+          "Dinesh Nath was the standout performer of KPL Season 2, consistently delivering match-winning performances with both bat and ball throughout the tournament. A well-deserved Player of the Tournament award.",
       },
       bestBatsman: {
         name: "Yuvraj Singh Rathore",
         team: "Krishna Travels",
         image: "/images/BEST-BETSMAN-2026.jpg",
         description:
-          "Dinesh Nath dominated the batting charts in KPL Season 2, playing some breathtaking innings that left spectators in awe. His elegant stroke play and consistency made him the undisputed Best Batsman of the tournament.",
+          "Yuvraj Singh Rathore dominated the batting charts in KPL Season 2, playing some breathtaking innings that left spectators in awe. His elegant stroke play and consistency made him the undisputed Best Batsman of the tournament.",
       },
       bestBowler: {
         name: "Sunil Kalbeliya",
