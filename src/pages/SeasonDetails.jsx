@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import seasons from '../data/seasons';
+import teamsData from '../data/teams.json';
 import Breadcrumbs from '../components/Breadcrumbs';
 import AwardCard from '../components/AwardCard';
 import SectionHeading from '../components/SectionHeading';
@@ -32,6 +33,10 @@ export default function SeasonDetails() {
     );
   }
 
+  const seasonTeams = (season.teamsList && season.teamsList.length > 0)
+    ? season.teamsList
+    : (teamsData[season.id] || []);
+
   const galleryImagesForSeason = season.gallery.map((src, i) => ({
     id: i + 1,
     src,
@@ -45,7 +50,7 @@ export default function SeasonDetails() {
     { label: 'Tournament', value: season.title },
     { label: 'Year', value: season.year },
     { label: 'Venue', value: season.venue },
-    { label: 'Teams', value: season.teams },
+    { label: 'Teams', value: seasonTeams.length || season.teams },
     { label: 'Matches', value: season.matches },
     { label: 'Champion', value: season.winner },
     { label: 'Runner-up', value: season.runnerUp },
@@ -142,7 +147,7 @@ export default function SeasonDetails() {
       </section>
 
       {/* Participating Teams */}
-      {season.teamsList && season.teamsList.length > 0 && (
+      {seasonTeams && seasonTeams.length > 0 && (
         <section className="py-10 sm:py-14 bg-gray-50 border-t border-gray-200">
           <div className="max-w-content mx-auto px-4 sm:px-6">
             <SectionHeading
@@ -150,7 +155,7 @@ export default function SeasonDetails() {
               subtitle={`Teams that competed in ${season.title}`}
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {season.teamsList.map((team) => (
+              {seasonTeams.map((team) => (
                 <div
                   key={team.id}
                   className={`card-hover p-4 rounded-xl border transition-all ${
