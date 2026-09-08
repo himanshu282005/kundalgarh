@@ -141,8 +141,51 @@ export default function SeasonDetails() {
         </div>
       </section>
 
+      {/* Participating Teams */}
+      {season.teamsList && season.teamsList.length > 0 && (
+        <section className="py-10 sm:py-14 bg-gray-50 border-t border-gray-200">
+          <div className="max-w-content mx-auto px-4 sm:px-6">
+            <SectionHeading
+              title="Participating Teams"
+              subtitle={`Teams that competed in ${season.title}`}
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {season.teamsList.map((team) => (
+                <div
+                  key={team.id}
+                  className={`card-hover p-4 rounded-xl border transition-all ${
+                    team.status === 'Champion'
+                      ? 'bg-gradient-to-br from-amber-50 to-orange-50 border-amber-300 shadow-sm'
+                      : team.status === 'Runner-up'
+                      ? 'bg-slate-50 border-slate-300 shadow-sm'
+                      : 'bg-white border-gray-200 shadow-xs'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="w-9 h-9 rounded-lg bg-navy/5 border border-navy/10 flex items-center justify-center text-xs font-black text-navy tracking-wider">
+                      {team.shortName || team.name.slice(0, 2).toUpperCase()}
+                    </span>
+                    {team.status === 'Champion' && (
+                      <span className="text-xs font-bold text-amber-800 bg-amber-100 border border-amber-300/80 px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-xs">
+                        🏆 Winner
+                      </span>
+                    )}
+                    {team.status === 'Runner-up' && (
+                      <span className="text-xs font-bold text-slate-700 bg-slate-200 border border-slate-300 px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-xs">
+                        🥈 Runner-up
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="font-bold text-navy text-sm sm:text-base leading-snug">{team.name}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Season Gallery */}
-      <section className="py-10 sm:py-14 bg-gray-50">
+      <section className="py-10 sm:py-14">
         <div className="max-w-content mx-auto px-4 sm:px-6">
           <SectionHeading
             title="Season Gallery"

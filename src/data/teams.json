@@ -1,0 +1,70 @@
+{
+  "2025": [
+    {
+      "id": 1,
+      "name": "Kanak Building Materials",
+      "shortName": "KBM",
+      "status": "Champion",
+      "badge": "🏆"
+    },
+    {
+      "id": 2,
+      "name": "Shree Janta Travels",
+      "shortName": "SJT",
+      "status": "Runner-up",
+      "badge": "🥈"
+    },
+    {
+      "id": 3,
+      "name": "Mahaveer Door",
+      "shortName": "MD",
+      "status": "Participant"
+    },
+    {
+      "id": 4,
+      "name": "Jay Bhavani",
+      "shortName": "JB",
+      "status": "Participant"
+    },
+    {
+      "id": 5,
+      "name": "Doctor Clinic",
+      "shortName": "DC",
+      "status": "Participant"
+    },
+    {
+      "id": 6,
+      "name": "Vishwaskarma Furnitures",
+      "shortName": "VF",
+      "status": "Participant"
+    },
+    {
+      "id": 7,
+      "name": "Jai Bhairav Warriors",
+      "shortName": "JBW",
+      "status": "Participant"
+    },
+    {
+      "id": 8,
+      "name": "Prem Kirana Store",
+      "shortName": "PKS",
+      "status": "Participant"
+    }
+  ],
+  "2026": [
+    {
+      "id": 1,
+      "name": "Krishna Travels",
+      "shortName": "KT",
+      "status": "Champion",
+      "badge": "🏆"
+    },
+    {
+      "id": 2,
+      "name": "MS DJ Sound",
+      "shortName": "MSD",
+      "status": "Runner-up",
+      "badge": "🥈"
+    }
+  ]
+}

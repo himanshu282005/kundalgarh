@@ -1,3 +1,5 @@
+import teamsData from './teams.json';
+
 const seasons = [
   {
     id: "2026",
@@ -9,6 +11,7 @@ const seasons = [
     runnerUp: "MS DJ Sound",
     venue: "Kundalgarh Cricket Ground",
     teams: 8,
+    teamsList: teamsData["2026"] || [],
     matches: 15,
     winnerImage: "/images/gallery/signal-2026-09-08-14-57-16-873_006.jpg",
     runnerUpImage: "/images/gallery/signal-2026-09-08-14-57-16-873.jpg",
@@ -70,6 +73,7 @@ const seasons = [
     runnerUp: "Shree Janta Travels",
     venue: "Kundalgarh Cricket Ground",
     teams: 8,
+    teamsList: teamsData["2025"] || [],
     matches: 15,
     winnerImage: "/images/venue/cricket-ground.jpg",
     runnerUpImage: "/images/hero/hero-bg.jpg",
