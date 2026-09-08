@@ -10,8 +10,6 @@ const awardLabels = {
   playerOfSeries: 'Player of the Series',
   bestBatsman: 'Best Batsman',
   bestBowler: 'Best Bowler',
-  bestFielder: 'Best Fielder',
-  bestEmergingPlayer: 'Best Emerging Player',
 };
 
 export default function SeasonDetails() {
@@ -44,7 +42,10 @@ export default function SeasonDetails() {
     category: 'all',
   }));
 
-  const awards = Object.entries(season.awards);
+  const excludedAwards = ['bestFielder', 'bestEmergingPlayer'];
+  const awards = Object.entries(season.awards).filter(
+    ([key]) => !excludedAwards.includes(key)
+  );
 
   const summaryItems = [
     { label: 'Tournament', value: season.title },

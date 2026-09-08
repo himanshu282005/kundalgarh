@@ -37,21 +37,27 @@ const seasons = [
         description:
           "Sunil Kalbeliya was a nightmare for batsmen throughout KPL Season 2, with his lethal deliveries and ability to pick up wickets at crucial moments earning him the Best Bowler award.",
       },
-      bestFielder: {
-        name: "To Be Updated",
-        team: "To Be Updated",
-        image: "/images/gallery/signal-2026-09-08-14-57-16-873_004.jpg",
-        description:
-          "Best Fielder of KPL Season 2 (2026). Details will be updated soon.",
-      },
-      bestEmergingPlayer: {
-        name: "To Be Updated",
-        team: "To Be Updated",
-        image: "/images/gallery/signal-2026-09-08-14-57-16-873_003.jpg",
-        description:
-          "Best Emerging Player of KPL Season 2 (2026). Details will be updated soon.",
-      },
     },
+    liveStreams: [
+      {
+        day: "Day 1",
+        title: "KPL Season 2 — Day 1 Live Stream",
+        url: "https://www.youtube.com/live/DMid4-imFfM?si=PDuaisEnWGQ63_-1",
+        videoId: "DMid4-imFfM",
+      },
+      {
+        day: "Day 2",
+        title: "KPL Season 2 — Day 2 Live Stream",
+        url: "https://www.youtube.com/live/KNMGcSMa6-0?si=Mv3KkHG2bews52N7",
+        videoId: "KNMGcSMa6-0",
+      },
+      {
+        day: "Day 3 (Finals)",
+        title: "KPL Season 2 — Day 3 & Grand Finale Live Stream",
+        url: "https://www.youtube.com/live/cZ6scaZdIRM?si=qjD-F8Z3fPfhodth",
+        videoId: "cZ6scaZdIRM",
+      },
+    ],
     gallery: [
       "/images/POTM-2026.jpg",
       "/images/BEST-BETSMAN-2026.jpg",
@@ -100,20 +106,6 @@ const seasons = [
         image: "/images/venue/cricket-ground.jpg",
         description:
           "Best Bowler of KPL Season 1 (2025). Details will be updated soon.",
-      },
-      bestFielder: {
-        name: "To Be Updated",
-        team: "To Be Updated",
-        image: "/images/venue/cricket-ground.jpg",
-        description:
-          "Best Fielder of KPL Season 1 (2025). Details will be updated soon.",
-      },
-      bestEmergingPlayer: {
-        name: "To Be Updated",
-        team: "To Be Updated",
-        image: "/images/venue/cricket-ground.jpg",
-        description:
-          "Best Emerging Player of KPL Season 1 (2025). Details will be updated soon.",
       },
     },
     gallery: [
