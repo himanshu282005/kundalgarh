@@ -42,8 +42,8 @@ const seasons = [
       {
         day: "Day 1",
         title: "KPL Season 2 — Day 1 Live Stream",
-        url: "https://www.youtube.com/live/DMid4-imFfM?si=PDuaisEnWGQ63_-1",
-        videoId: "DMid4-imFfM",
+        url: "https://www.youtube.com/live/cZ6scaZdIRM?si=clcjQB6A-nGxgtd5",
+        videoId: "cZ6scaZdIRM",
       },
       {
         day: "Day 2",
@@ -54,8 +54,8 @@ const seasons = [
       {
         day: "Day 3 (Finals)",
         title: "KPL Season 2 — Day 3 & Grand Finale Live Stream",
-        url: "https://www.youtube.com/live/cZ6scaZdIRM?si=qjD-F8Z3fPfhodth",
-        videoId: "cZ6scaZdIRM",
+        url: "https://www.youtube.com/live/DMid4-imFfM?si=zTSpVRpnlPp7XIvl",
+        videoId: "DMid4-imFfM",
       },
     ],
     gallery: [
@@ -95,14 +95,14 @@ const seasons = [
       playerOfSeries: {
         name: "To Be Updated",
         team: "Kanak Building Materials",
-        image: "/images/signal-2026-09-08-16-31-46-835_002.jpg",
+        image: "",
         description:
           "Player of the Series for KPL Season 1 (2025). Details will be updated soon.",
       },
       bestBatsman: {
         name: "To Be Updated",
         team: "To Be Updated",
-        image: "/images/venue/cricket-ground.jpg",
+        image: "",
         description:
           "Best Batsman of KPL Season 1 (2025). Details will be updated soon.",
       },
