@@ -1,21 +1,50 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export default function GalleryGrid({ images }) {
-  const [lightbox, setLightbox] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(null);
+
+  const activeImage = currentIndex !== null && images && images[currentIndex] ? images[currentIndex] : null;
+
+  const handlePrev = useCallback((e) => {
+    e?.stopPropagation();
+    if (!images || images.length === 0) return;
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+  }, [images]);
+
+  const handleNext = useCallback((e) => {
+    e?.stopPropagation();
+    if (!images || images.length === 0) return;
+    setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+  }, [images]);
+
+  const handleClose = useCallback(() => {
+    setCurrentIndex(null);
+  }, []);
+
+  useEffect(() => {
+    if (currentIndex === null) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') handleNext();
+      else if (e.key === 'ArrowLeft') handlePrev();
+      else if (e.key === 'Escape') handleClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndex, handleNext, handlePrev, handleClose]);
 
   return (
     <>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
-        {images.map((image) => (
+        {images.map((image, index) => (
           <button
-            key={image.id}
-            onClick={() => setLightbox(image)}
+            key={image.id || index}
+            onClick={() => setCurrentIndex(index)}
             className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-900 border border-white/10 hover:border-amber-400/60 shadow-lg hover:shadow-xl hover:shadow-amber-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-slate-950"
-            aria-label={image.alt ? `View ${image.alt}` : `View photo ${image.id}`}
+            aria-label={image.alt ? `View ${image.alt}` : `View photo ${image.id || index + 1}`}
           >
             <img
               src={image.src}
-              alt={image.alt || `Kundalgarh photo ${image.id}`}
+              alt={image.alt || `Kundalgarh photo ${image.id || index + 1}`}
               className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
               loading="lazy"
             />
@@ -52,52 +81,105 @@ export default function GalleryGrid({ images }) {
       </div>
 
       {/* Lightbox Modal */}
-      {lightbox && (
+      {activeImage && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/92 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fade-in"
-          onClick={() => setLightbox(null)}
+          className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-2 sm:p-6 animate-fade-in select-none"
+          onClick={handleClose}
           role="dialog"
           aria-modal="true"
           aria-label="Image lightbox"
         >
-          <button
-            onClick={() => setLightbox(null)}
-            className="absolute top-5 right-5 p-2 rounded-full bg-white/10 hover:bg-amber-500 hover:text-slate-950 text-white transition-all duration-200 z-10 border border-white/20"
-            aria-label="Close lightbox"
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          {/* Top Bar with Counter and Close Button */}
+          <div className="absolute top-4 inset-x-4 sm:inset-x-8 flex items-center justify-between z-20 pointer-events-none">
+            <div className="pointer-events-auto inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/85 border border-white/20 text-xs font-bold text-amber-400 backdrop-blur-md shadow-lg">
+              <span>📷</span>
+              <span>{currentIndex + 1} / {images.length}</span>
+              <span className="hidden sm:inline text-slate-400 font-normal">&bull; Click image or arrows for next</span>
+            </div>
 
+            <button
+              onClick={handleClose}
+              className="pointer-events-auto p-2.5 rounded-full bg-slate-900/85 hover:bg-amber-500 hover:text-slate-950 text-white transition-all duration-200 border border-white/20 shadow-lg"
+              aria-label="Close lightbox"
+            >
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Left Arrow Button */}
+          {images.length > 1 && (
+            <button
+              onClick={handlePrev}
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 p-2.5 sm:p-3.5 rounded-full bg-slate-900/85 hover:bg-amber-500 hover:text-slate-950 text-white border border-white/20 shadow-2xl transition-all duration-200 z-20 group hover:scale-110 focus:outline-none"
+              aria-label="Previous photo"
+            >
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Right Arrow Button */}
+          {images.length > 1 && (
+            <button
+              onClick={handleNext}
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 p-2.5 sm:p-3.5 rounded-full bg-slate-900/85 hover:bg-amber-500 hover:text-slate-950 text-white border border-white/20 shadow-2xl transition-all duration-200 z-20 group hover:scale-110 focus:outline-none"
+              aria-label="Next photo"
+            >
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Center Card */}
           <div
-            className="max-w-4xl w-full bg-slate-900/90 border border-amber-500/30 rounded-2xl overflow-hidden shadow-2xl p-2 sm:p-3"
+            className="max-w-4xl w-full bg-slate-900/90 border border-amber-500/30 rounded-2xl overflow-hidden shadow-2xl p-2 sm:p-4 my-auto relative z-10"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="overflow-hidden rounded-xl bg-black flex items-center justify-center max-h-[80vh]">
+            {/* Clickable Image Container that advances on click */}
+            <div
+              onClick={handleNext}
+              className="overflow-hidden rounded-xl bg-black flex items-center justify-center max-h-[75vh] cursor-pointer relative group"
+              title="Click image to view next photo"
+            >
               <img
-                src={lightbox.src}
-                alt={lightbox.alt || `Kundalgarh photo ${lightbox.id}`}
-                className="w-full h-auto max-h-[75vh] object-contain"
+                key={activeImage.id || currentIndex}
+                src={activeImage.src}
+                alt={activeImage.alt || `Kundalgarh photo ${activeImage.id || currentIndex + 1}`}
+                className="w-full h-auto max-h-[72vh] object-contain transition-transform duration-300 group-hover:scale-[1.01]"
               />
+
+              {/* Next indicator overlay hint on hover */}
+              {images.length > 1 && (
+                <div className="absolute right-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-slate-950/80 border border-white/20 px-3 py-1 rounded-full text-[11px] font-bold text-amber-300 flex items-center gap-1.5 shadow-lg pointer-events-none">
+                  <span>Next &rarr;</span>
+                </div>
+              )}
             </div>
-            {(lightbox.title || lightbox.alt) && (
+
+            {/* Captions */}
+            {(activeImage.title || activeImage.alt) && (
               <div className="p-3 text-center">
-                {lightbox.title ? (
+                {activeImage.title ? (
                   <>
                     <h3 className="text-white font-bold text-base sm:text-lg font-sports">
-                      {lightbox.title}
+                      {activeImage.title}
                     </h3>
-                    {lightbox.role && (
+                    {activeImage.role && (
                       <p className="text-amber-400 font-semibold text-xs sm:text-sm mt-0.5">
-                        {lightbox.role}
+                        {activeImage.role}
                       </p>
                     )}
                   </>
                 ) : (
-                  <p className="text-white font-medium text-sm sm:text-base">{lightbox.alt}</p>
+                  <p className="text-white font-medium text-sm sm:text-base">{activeImage.alt}</p>
                 )}
-                <p className="text-slate-400 text-xs mt-1">Kundalgarh Premier League &bull; Official Tournament Archive</p>
+                <p className="text-slate-400 text-xs mt-1">
+                  Kundalgarh Premier League &bull; Official Tournament Archive
+                </p>
               </div>
             )}
           </div>

@@ -1,12 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import galleryImages from '../data/gallery';
 
 export default function GalleryPreviewSection() {
-  const [activePhoto, setActivePhoto] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   // Take 8 diverse, iconic tournament photographs
   const previewImages = galleryImages.slice(0, 8);
+
+  const activePhoto = activeIndex !== null && previewImages[activeIndex] ? previewImages[activeIndex] : null;
+
+  const handlePrev = useCallback((e) => {
+    e?.stopPropagation();
+    setActiveIndex((prev) => (prev > 0 ? prev - 1 : previewImages.length - 1));
+  }, [previewImages.length]);
+
+  const handleNext = useCallback((e) => {
+    e?.stopPropagation();
+    setActiveIndex((prev) => (prev < previewImages.length - 1 ? prev + 1 : 0));
+  }, [previewImages.length]);
+
+  const handleClose = useCallback(() => {
+    setActiveIndex(null);
+  }, []);
+
+  useEffect(() => {
+    if (activeIndex === null) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') handleNext();
+      else if (e.key === 'ArrowLeft') handlePrev();
+      else if (e.key === 'Escape') handleClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeIndex, handleNext, handlePrev, handleClose]);
 
   return (
     <section className="py-14 sm:py-20 bg-slate-950 text-white relative overflow-hidden border-b border-white/10">
@@ -34,7 +61,7 @@ export default function GalleryPreviewSection() {
           {previewImages.map((img, idx) => (
             <div
               key={img.id}
-              onClick={() => setActivePhoto(img)}
+              onClick={() => setActiveIndex(idx)}
               className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 border border-white/10 group cursor-pointer shadow-md hover:border-amber-400/50 transition-all duration-300"
             >
               <img
@@ -88,34 +115,84 @@ export default function GalleryPreviewSection() {
       {/* Lightbox Modal */}
       {activePhoto && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setActivePhoto(null)}
+          className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-2 sm:p-6 animate-fade-in select-none"
+          onClick={handleClose}
           role="dialog"
           aria-modal="true"
         >
-          <button
-            onClick={() => setActivePhoto(null)}
-            className="absolute top-5 right-5 text-white/80 hover:text-white p-2 rounded-full bg-white/10 border border-white/20"
-            aria-label="Close photo"
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          {/* Top Bar with Counter and Close Button */}
+          <div className="absolute top-4 inset-x-4 sm:inset-x-8 flex items-center justify-between z-20 pointer-events-none">
+            <div className="pointer-events-auto inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/85 border border-white/20 text-xs font-bold text-amber-400 backdrop-blur-md shadow-lg">
+              <span>📷</span>
+              <span>{activeIndex + 1} / {previewImages.length}</span>
+              <span className="hidden sm:inline text-slate-400 font-normal">&bull; Click image or arrows for next</span>
+            </div>
 
+            <button
+              onClick={handleClose}
+              className="pointer-events-auto p-2.5 rounded-full bg-slate-900/85 hover:bg-amber-500 hover:text-slate-950 text-white transition-all duration-200 border border-white/20 shadow-lg"
+              aria-label="Close photo"
+            >
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Left Arrow Button */}
+          {previewImages.length > 1 && (
+            <button
+              onClick={handlePrev}
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 p-2.5 sm:p-3.5 rounded-full bg-slate-900/85 hover:bg-amber-500 hover:text-slate-950 text-white border border-white/20 shadow-2xl transition-all duration-200 z-20 group hover:scale-110 focus:outline-none"
+              aria-label="Previous photo"
+            >
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Right Arrow Button */}
+          {previewImages.length > 1 && (
+            <button
+              onClick={handleNext}
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 p-2.5 sm:p-3.5 rounded-full bg-slate-900/85 hover:bg-amber-500 hover:text-slate-950 text-white border border-white/20 shadow-2xl transition-all duration-200 z-20 group hover:scale-110 focus:outline-none"
+              aria-label="Next photo"
+            >
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Center Modal Card */}
           <div
-            className="max-w-4xl w-full p-2"
+            className="max-w-4xl w-full bg-slate-900/90 border border-amber-500/30 rounded-2xl overflow-hidden shadow-2xl p-2 sm:p-4 my-auto relative z-10"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black">
+            {/* Clickable Image Container that advances on click */}
+            <div
+              onClick={handleNext}
+              className="overflow-hidden rounded-xl bg-black flex items-center justify-center max-h-[75vh] cursor-pointer relative group"
+              title="Click image to view next photo"
+            >
               <img
+                key={activePhoto.id || activeIndex}
                 src={activePhoto.src}
                 alt={activePhoto.alt || "KPL Moment"}
-                className="w-full h-auto max-h-[80vh] object-contain mx-auto"
+                className="w-full h-auto max-h-[72vh] object-contain transition-transform duration-300 group-hover:scale-[1.01]"
               />
+
+              {/* Next indicator overlay hint on hover */}
+              {previewImages.length > 1 && (
+                <div className="absolute right-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-slate-950/80 border border-white/20 px-3 py-1 rounded-full text-[11px] font-bold text-amber-300 flex items-center gap-1.5 shadow-lg pointer-events-none">
+                  <span>Next &rarr;</span>
+                </div>
+              )}
             </div>
+
             {(activePhoto.title || activePhoto.alt) && (
-              <div className="text-center mt-3">
+              <div className="p-3 text-center">
                 {activePhoto.title ? (
                   <>
                     <p className="text-white font-bold text-sm sm:text-base font-sports">{activePhoto.title}</p>
@@ -128,6 +205,9 @@ export default function GalleryPreviewSection() {
                     {activePhoto.alt}
                   </p>
                 )}
+                <p className="text-slate-400 text-xs mt-1">
+                  Kundalgarh Premier League &bull; Official Tournament Archive
+                </p>
               </div>
             )}
           </div>
