@@ -186,7 +186,7 @@ export default function LatestSeasonSection() {
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 bg-red-600/90 hover:bg-red-600 text-white font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-all duration-300"
                 >
                   <span className="w-2 h-2 rounded-full bg-white animate-live-pulse" />
-                  <span>Watch Grand Finale Live</span>
+                  <span>Watch Grand Finale</span>
                 </a>
               </div>
             </div>

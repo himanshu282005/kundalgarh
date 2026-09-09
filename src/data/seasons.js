@@ -93,23 +93,23 @@ const seasons = [
     runnerUpImage: "/images/signal-2026-09-08-16-31-46-835_003.jpg",
     awards: {
       playerOfSeries: {
-        name: "To Be Updated",
+        name: "Akash Kalbeliya",
         team: "Kanak Building Materials",
         image: "",
         description:
           "Player of the Series for KPL Season 1 (2025). Details will be updated soon.",
       },
       bestBatsman: {
-        name: "To Be Updated",
-        team: "To Be Updated",
+        name: "Akash Kalbeliya",
+        team: "Kanak Building Materials",
         image: "",
         description:
           "Best Batsman of KPL Season 1 (2025). Details will be updated soon.",
       },
       bestBowler: {
-        name: "To Be Updated",
-        team: "To Be Updated",
-        image: "/images/venue/cricket-ground.jpg",
+        name: "Yuvraj Singh",
+        team: "Shree janta Travels",
+        image: "/images/BEST-BETSMAN-2026.jpg",
         description:
           "Best Bowler of KPL Season 1 (2025). Details will be updated soon.",
       },
