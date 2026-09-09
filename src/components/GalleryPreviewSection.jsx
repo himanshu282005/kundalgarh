@@ -39,7 +39,7 @@ export default function GalleryPreviewSection() {
             >
               <img
                 src={img.src}
-                alt={img.alt}
+                alt={img.alt || `KPL Moment ${idx + 1}`}
                 className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"
               />
@@ -57,9 +57,11 @@ export default function GalleryPreviewSection() {
                 <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-0.5">
                   KPL Moment #{idx + 1}
                 </span>
-                <p className="text-[11px] sm:text-xs text-white line-clamp-2 font-medium leading-snug drop-shadow">
-                  {img.alt}
-                </p>
+                {img.alt && (
+                  <p className="text-[11px] sm:text-xs text-white line-clamp-2 font-medium leading-snug drop-shadow">
+                    {img.alt}
+                  </p>
+                )}
               </div>
             </div>
           ))}
@@ -104,13 +106,15 @@ export default function GalleryPreviewSection() {
             <div className="rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black">
               <img
                 src={activePhoto.src}
-                alt={activePhoto.alt}
+                alt={activePhoto.alt || "KPL Moment"}
                 className="w-full h-auto max-h-[80vh] object-contain mx-auto"
               />
             </div>
-            <p className="text-slate-300 text-xs sm:text-sm text-center mt-3 font-medium">
-              {activePhoto.alt}
-            </p>
+            {activePhoto.alt && (
+              <p className="text-slate-300 text-xs sm:text-sm text-center mt-3 font-medium">
+                {activePhoto.alt}
+              </p>
+            )}
           </div>
         </div>
       )}

@@ -11,11 +11,11 @@ export default function GalleryGrid({ images }) {
             key={image.id}
             onClick={() => setLightbox(image)}
             className="aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
-            aria-label={`View ${image.alt}`}
+            aria-label={image.alt ? `View ${image.alt}` : `View photo ${image.id}`}
           >
             <img
               src={image.src}
-              alt={image.alt}
+              alt={image.alt || `Kundalgarh photo ${image.id}`}
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               loading="lazy"
             />
@@ -48,10 +48,12 @@ export default function GalleryGrid({ images }) {
           >
             <img
               src={lightbox.src}
-              alt={lightbox.alt}
+              alt={lightbox.alt || `Kundalgarh photo ${lightbox.id}`}
               className="w-full h-auto rounded-lg max-h-[80vh] object-contain"
             />
-            <p className="text-white/70 text-sm text-center mt-3">{lightbox.alt}</p>
+            {lightbox.alt && (
+              <p className="text-white/70 text-sm text-center mt-3">{lightbox.alt}</p>
+            )}
           </div>
         </div>
       )}
