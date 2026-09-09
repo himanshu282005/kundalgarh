@@ -106,21 +106,21 @@ const seasons = [
         team: "Kanak Building Materials",
         image: "",
         description:
-          "Player of the Series for KPL Season 1 (2025). Details will be updated soon.",
+          "Player of the tournament is akash kalbeliya",
       },
       bestBatsman: {
         name: "Akash Kalbeliya",
         team: "Kanak Building Materials",
         image: "",
         description:
-          "Best Batsman of KPL Season 1 (2025). Details will be updated soon.",
+          "Akash Kalbeliya is the best betsman of the kpl season-1 (2025)",
       },
       bestBowler: {
         name: "Yuvraj Singh",
         team: "Shree janta Travels",
         image: "/images/BEST-BETSMAN-2026.jpg",
         description:
-          "Best Bowler of KPL Season 1 (2025). Details will be updated soon.",
+          "Yuvraj Singh is the best bowler of the kpl season-1 (2025)"
       },
     },
     gallery: [
