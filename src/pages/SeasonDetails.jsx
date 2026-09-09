@@ -21,10 +21,14 @@ export default function SeasonDetails() {
 
   if (!season) {
     return (
-      <div className="max-w-content mx-auto px-4 sm:px-6 py-20 text-center">
-        <h1 className="text-2xl font-bold text-navy mb-4">Season Not Found</h1>
-        <p className="text-gray-500 mb-6">The season you're looking for doesn't exist.</p>
-        <Link to="/" className="text-brand-600 hover:text-brand-700 font-medium text-sm">
+      <div className="bg-slate-950 text-white min-h-[60vh] flex flex-col items-center justify-center px-4 py-20 text-center">
+        <span className="text-4xl mb-4">🏏</span>
+        <h1 className="text-2xl sm:text-3xl font-extrabold font-sports text-white mb-2">Season Not Found</h1>
+        <p className="text-slate-400 mb-6 text-sm sm:text-base">The tournament season you are looking for does not exist in our archives.</p>
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold uppercase tracking-wider rounded-xl text-xs shadow-lg shadow-amber-500/20 hover:scale-105 transition-all"
+        >
           &larr; Back to Home
         </Link>
       </div>
@@ -58,10 +62,22 @@ export default function SeasonDetails() {
   ];
 
   return (
-    <div className="pb-12">
-      {/* Header */}
-      <section className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-content mx-auto px-4 sm:px-6 pt-6 pb-8 sm:pb-10">
+    <div className="bg-slate-950 text-white min-h-screen pb-16">
+      {/* ─── Cinematic Hero Header ─────────────────────────────── */}
+      <section className="relative overflow-hidden border-b border-white/10 bg-slate-950 pt-8 pb-12 sm:pb-16">
+        {/* Ambient Ground Atmosphere Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <img
+            src="/images/hero/hero-bg.jpg"
+            alt="Cricket Ground Atmosphere"
+            className="w-full h-full object-cover object-center opacity-25 scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/95" />
+          <div className="absolute -top-24 right-1/4 w-96 h-96 rounded-full bg-amber-500/10 blur-[120px]" />
+          <div className="absolute -bottom-24 left-1/4 w-96 h-96 rounded-full bg-cyan-500/10 blur-[120px]" />
+        </div>
+
+        <div className="relative z-10 max-w-content mx-auto px-4 sm:px-6">
           <Breadcrumbs
             items={[
               { label: 'Home', href: '/' },
@@ -69,41 +85,65 @@ export default function SeasonDetails() {
               { label: season.title },
             ]}
           />
-          <h1 className="text-2xl sm:text-3xl font-bold text-navy mb-2">{season.title}</h1>
-          <p className="text-gray-500 text-sm sm:text-base max-w-2xl">{season.description}</p>
+
+          <div className="flex flex-wrap items-center gap-2.5 mb-3">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-xs font-bold text-amber-400 uppercase tracking-widest">
+              <span>🏆</span>
+              <span>Season {season.year} Archive</span>
+            </span>
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-semibold text-slate-300">
+              <span>🏏</span>
+              <span>{season.matches} Matches Played</span>
+            </span>
+          </div>
+
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sports uppercase tracking-tight mb-3">
+            {season.title}
+          </h1>
+
+          <p className="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+            {season.description}
+          </p>
         </div>
       </section>
 
-      {/* Champion Section */}
+      {/* ─── Champion Showcase Section ─────────────────────────────── */}
       <section className="py-10 sm:py-14">
         <div className="max-w-content mx-auto px-4 sm:px-6">
-          <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/30 border border-amber-500/30 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-md">
             <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="aspect-[4/3] md:aspect-auto overflow-hidden">
+              <div className="aspect-[4/3] md:aspect-auto overflow-hidden bg-slate-950 relative group">
                 <img
                   src={season.winnerImage}
                   alt={`${season.winner} — ${season.title} Champions`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent md:hidden" />
               </div>
-              <div className="p-6 sm:p-8 flex flex-col justify-center">
-                <span className="inline-block text-xs font-semibold text-amber-700 bg-amber-50 px-3 py-1 rounded-full mb-4 w-fit">
-                  🏆 Champions
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-3">{season.winner}</h2>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <p>
-                    <span className="text-gray-400">Runner-up:</span>{' '}
-                    <span className="font-medium text-gray-700">{season.runnerUp}</span>
-                  </p>
-                  <p>
-                    <span className="text-gray-400">Venue:</span>{' '}
-                    <span className="font-medium text-gray-700">{season.venue}</span>
-                  </p>
-                  <p>
-                    <span className="text-gray-400">Season:</span>{' '}
-                    <span className="font-medium text-gray-700">{season.year}</span>
-                  </p>
+
+              <div className="p-6 sm:p-10 flex flex-col justify-center">
+                <div className="inline-flex items-center gap-2 text-xs font-bold text-amber-400 bg-amber-400/15 border border-amber-400/30 px-3 py-1 rounded-full mb-4 w-fit uppercase tracking-wider">
+                  <span className="animate-trophy-bounce inline-block">🏆</span>
+                  Official Tournament Champions
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white font-sports tracking-tight mb-4">
+                  {season.winner}
+                </h2>
+
+                <div className="space-y-3 text-sm text-slate-300 bg-white/[0.03] border border-white/10 rounded-xl p-4 sm:p-5">
+                  <div className="flex items-center justify-between border-b border-white/5 pb-2">
+                    <span className="text-slate-400 font-medium">🥈 Runner-up:</span>
+                    <span className="font-bold text-white">{season.runnerUp}</span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-white/5 pb-2">
+                    <span className="text-slate-400 font-medium">📍 Venue:</span>
+                    <span className="font-semibold text-slate-200">{season.venue}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400 font-medium">📅 Season Year:</span>
+                    <span className="font-bold text-amber-400">{season.year}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -111,14 +151,14 @@ export default function SeasonDetails() {
         </div>
       </section>
 
-      {/* Awards */}
-      <section className="py-10 sm:py-14 bg-gray-50">
+      {/* ─── Awards Section ─────────────────────────────── */}
+      <section className="py-12 sm:py-16 bg-slate-900/40 border-y border-white/10">
         <div className="max-w-content mx-auto px-4 sm:px-6">
           <SectionHeading
             title="Season Awards"
-            subtitle={`Outstanding performers of ${season.title}`}
+            subtitle={`Outstanding performers and individual glory of ${season.title}`}
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {awards.map(([key, award]) => (
               <AwardCard key={key} title={awardLabels[key] || key} award={award} />
             ))}
@@ -126,63 +166,63 @@ export default function SeasonDetails() {
         </div>
       </section>
 
-      {/* Season Summary */}
-      <section className="py-10 sm:py-14">
+      {/* ─── Season Summary Stats ─────────────────────────────── */}
+      <section className="py-12 sm:py-16">
         <div className="max-w-content mx-auto px-4 sm:px-6">
           <SectionHeading
             title="Season Summary"
-            subtitle="Key facts and figures from this tournament"
+            subtitle="Key facts, records, and tournament statistics at a glance"
           />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {summaryItems.map((item, i) => (
               <div
                 key={i}
-                className="bg-white border border-gray-200 rounded-xl p-4 text-center"
+                className="bg-slate-900/80 border border-white/10 hover:border-amber-400/40 rounded-2xl p-5 text-center shadow-lg transition-all duration-300 hover:scale-105 backdrop-blur-sm"
               >
-                <p className="text-xs text-gray-400 font-medium uppercase tracking-wider mb-1">{item.label}</p>
-                <p className="text-sm sm:text-base font-bold text-navy">{item.value}</p>
+                <p className="text-[11px] text-amber-400/90 font-bold uppercase tracking-wider mb-1.5">{item.label}</p>
+                <p className="text-base sm:text-lg font-extrabold text-white font-sports tracking-tight">{item.value}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Participating Teams */}
+      {/* ─── Participating Teams ─────────────────────────────── */}
       {seasonTeams && seasonTeams.length > 0 && (
-        <section className="py-10 sm:py-14 bg-gray-50 border-t border-gray-200">
+        <section className="py-12 sm:py-16 bg-slate-900/40 border-t border-white/10">
           <div className="max-w-content mx-auto px-4 sm:px-6">
             <SectionHeading
               title="Participating Teams"
-              subtitle={`Teams that competed in ${season.title}`}
+              subtitle={`All competing village squads that battled for glory in ${season.title}`}
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {seasonTeams.map((team) => (
                 <div
                   key={team.id}
-                  className={`card-hover p-4 rounded-xl border transition-all ${
+                  className={`card-hover p-4 sm:p-5 rounded-2xl border transition-all duration-300 ${
                     team.status === 'Champion'
-                      ? 'bg-gradient-to-br from-amber-50 to-orange-50 border-amber-300 shadow-sm'
+                      ? 'bg-gradient-to-br from-amber-500/20 via-slate-900 to-slate-900 border-amber-400/50 shadow-xl shadow-amber-500/10'
                       : team.status === 'Runner-up'
-                      ? 'bg-slate-50 border-slate-300 shadow-sm'
-                      : 'bg-white border-gray-200 shadow-xs'
+                      ? 'bg-gradient-to-br from-slate-800 via-slate-900 to-slate-900 border-slate-600/60 shadow-lg'
+                      : 'bg-slate-900/80 border-white/10 hover:border-amber-400/40 shadow-md'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <span className="w-9 h-9 rounded-lg bg-navy/5 border border-navy/10 flex items-center justify-center text-xs font-black text-navy tracking-wider">
+                    <span className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-xs font-black text-amber-400 tracking-wider font-sports">
                       {team.shortName || team.name.slice(0, 2).toUpperCase()}
                     </span>
                     {team.status === 'Champion' && (
-                      <span className="text-xs font-bold text-amber-800 bg-amber-100 border border-amber-300/80 px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-xs">
+                      <span className="text-xs font-bold text-amber-300 bg-amber-400/20 border border-amber-400/40 px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
                         🏆 Winner
                       </span>
                     )}
                     {team.status === 'Runner-up' && (
-                      <span className="text-xs font-bold text-slate-700 bg-slate-200 border border-slate-300 px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-xs">
+                      <span className="text-xs font-bold text-slate-200 bg-white/10 border border-white/20 px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
                         🥈 Runner-up
                       </span>
                     )}
                   </div>
-                  <h3 className="font-bold text-navy text-sm sm:text-base leading-snug">{team.name}</h3>
+                  <h3 className="font-bold text-white text-base leading-snug font-sports">{team.name}</h3>
                 </div>
               ))}
             </div>
@@ -190,12 +230,12 @@ export default function SeasonDetails() {
         </section>
       )}
 
-      {/* Live Streams Section */}
+      {/* ─── Live Streams Section ─────────────────────────────── */}
       {season.liveStreams && season.liveStreams.length > 0 && (
-        <section className="py-10 sm:py-14 bg-navy-dark text-white relative overflow-hidden">
+        <section className="py-12 sm:py-16 bg-slate-950 border-t border-white/10 relative overflow-hidden">
           {/* Subtle background glow */}
           <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-red-600/10 blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-brand-500/10 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
 
           <div className="relative max-w-content mx-auto px-4 sm:px-6">
             <div className="text-center mb-8">
@@ -203,8 +243,8 @@ export default function SeasonDetails() {
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                 <span className="text-xs font-bold text-red-400 uppercase tracking-wider">YouTube Live Broadcasts</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Watch Tournament Live Matches
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-sports uppercase">
+                Watch Tournament Matches
               </h2>
               <div className="h-1 w-14 bg-gradient-to-r from-red-500 via-amber-400 to-brand-500 rounded-full mx-auto mt-2.5" />
               <p className="mt-3 text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
@@ -216,7 +256,7 @@ export default function SeasonDetails() {
               {season.liveStreams.map((stream, idx) => (
                 <div
                   key={idx}
-                  className="bg-navy/80 border border-white/10 rounded-2xl overflow-hidden shadow-lg flex flex-col hover:border-red-500/40 transition-all duration-300 group"
+                  className="bg-slate-900/90 border border-white/10 rounded-2xl overflow-hidden shadow-xl flex flex-col hover:border-red-500/40 transition-all duration-300 group"
                 >
                   <div className="aspect-video w-full bg-black relative">
                     <iframe
@@ -248,7 +288,7 @@ export default function SeasonDetails() {
                       href={stream.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600/90 hover:bg-red-600 text-white rounded-lg text-xs font-semibold tracking-wide transition-colors shadow-sm"
+                      className="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-red-600/90 hover:bg-red-600 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-md"
                     >
                       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -263,28 +303,28 @@ export default function SeasonDetails() {
         </section>
       )}
 
-      {/* Season Gallery */}
-      <section className="py-10 sm:py-14">
+      {/* ─── Season Gallery ─────────────────────────────── */}
+      <section className="py-12 sm:py-16">
         <div className="max-w-content mx-auto px-4 sm:px-6">
           <SectionHeading
             title="Season Gallery"
-            subtitle={`Photos from ${season.title}`}
+            subtitle={`Photographic highlights and memorable match action from ${season.title}`}
           />
           <GalleryGrid images={galleryImagesForSeason} />
         </div>
       </section>
 
-      {/* Prev / Next Navigation */}
-      <section className="py-10">
+      {/* ─── Prev / Next Navigation ─────────────────────────────── */}
+      <section className="py-10 border-t border-white/10">
         <div className="max-w-content mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {prevSeason ? (
               <Link
                 to={`/season/${prevSeason.id}`}
-                className="inline-flex items-center px-5 py-2.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                className="inline-flex items-center px-5 py-2.5 bg-slate-900 border border-white/15 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-200 hover:text-amber-300 hover:border-amber-400/40 transition-all shadow-md"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                 </svg>
                 {prevSeason.title}
               </Link>
@@ -294,19 +334,19 @@ export default function SeasonDetails() {
 
             <Link
               to="/"
-              className="inline-flex items-center px-5 py-2.5 bg-brand-600 text-white rounded-lg text-sm font-medium hover:bg-brand-700 transition-colors"
+              className="inline-flex items-center px-6 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider hover:scale-105 transition-all shadow-lg shadow-amber-500/20"
             >
-              All Seasons
+              All Seasons Archive
             </Link>
 
             {nextSeason ? (
               <Link
                 to={`/season/${nextSeason.id}`}
-                className="inline-flex items-center px-5 py-2.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                className="inline-flex items-center px-5 py-2.5 bg-slate-900 border border-white/15 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-200 hover:text-amber-300 hover:border-amber-400/40 transition-all shadow-md"
               >
                 {nextSeason.title}
                 <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
             ) : (

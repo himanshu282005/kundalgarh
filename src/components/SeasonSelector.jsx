@@ -12,7 +12,7 @@ export default function SeasonSelector() {
   };
 
   return (
-    <section className="py-12 sm:py-16 bg-gray-50">
+    <section className="py-12 sm:py-16 bg-slate-950 border-t border-white/10">
       <div className="max-w-content mx-auto px-4 sm:px-6">
         <SectionHeading
           title="Explore KPL Seasons"
@@ -23,19 +23,19 @@ export default function SeasonSelector() {
           <select
             value={selected}
             onChange={(e) => setSelected(e.target.value)}
-            className="flex-1 px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 appearance-none cursor-pointer"
+            className="flex-1 px-4 py-3 bg-slate-900 border border-white/20 rounded-xl text-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 cursor-pointer"
             aria-label="Select a KPL season"
           >
             {seasons.map((season) => (
-              <option key={season.id} value={season.id}>
-                {season.title}
+              <option key={season.id} value={season.id} className="bg-slate-900 text-white">
+                {season.title} ({season.year})
               </option>
             ))}
           </select>
 
           <button
             onClick={handleView}
-            className="px-6 py-3 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 transition-colors text-sm whitespace-nowrap"
+            className="px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold uppercase tracking-wider rounded-xl hover:scale-105 transition-all text-sm whitespace-nowrap shadow-md shadow-amber-500/20"
           >
             View Season
           </button>

@@ -22,7 +22,7 @@ function AppContent() {
   const isHome = pathname === '/';
 
   return (
-    <div className={`flex flex-col min-h-screen ${isHome ? 'bg-slate-950' : 'bg-white'}`}>
+    <div className="flex flex-col min-h-screen bg-slate-950 text-white selection:bg-amber-500 selection:text-slate-950">
       <Navbar />
       <main className={`flex-1 ${isHome ? '' : 'pt-16 sm:pt-20'}`}>
         <Routes>
