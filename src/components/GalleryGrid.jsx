@@ -20,10 +20,31 @@ export default function GalleryGrid({ images }) {
               loading="lazy"
             />
             {/* Subtle dark gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-amber-400">
-                <span>🔍</span>
-                <span className="truncate">{image.alt || 'View Full Photo'}</span>
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3 text-left">
+              {image.category === 'commentator' ? (
+                <span className="self-start inline-flex items-center gap-1 text-[10px] font-bold text-amber-300 bg-amber-500/20 border border-amber-400/40 px-2 py-0.5 rounded-full">
+                  <span>🎙️</span> Commentator
+                </span>
+              ) : <div />}
+              
+              <div>
+                {image.title ? (
+                  <>
+                    <p className="text-xs sm:text-sm font-bold text-white leading-tight font-sports drop-shadow">
+                      {image.title}
+                    </p>
+                    {image.role && (
+                      <p className="text-[10px] sm:text-[11px] font-semibold text-amber-400 truncate mt-0.5">
+                        {image.role}
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-amber-400">
+                    <span>🔍</span>
+                    <span className="truncate">{image.alt || 'View Full Photo'}</span>
+                  </div>
+                )}
               </div>
             </div>
           </button>
@@ -60,10 +81,23 @@ export default function GalleryGrid({ images }) {
                 className="w-full h-auto max-h-[75vh] object-contain"
               />
             </div>
-            {lightbox.alt && (
+            {(lightbox.title || lightbox.alt) && (
               <div className="p-3 text-center">
-                <p className="text-white font-medium text-sm sm:text-base">{lightbox.alt}</p>
-                <p className="text-amber-400 text-xs mt-0.5">Kundalgarh Premier League &bull; Official Tournament Archive</p>
+                {lightbox.title ? (
+                  <>
+                    <h3 className="text-white font-bold text-base sm:text-lg font-sports">
+                      {lightbox.title}
+                    </h3>
+                    {lightbox.role && (
+                      <p className="text-amber-400 font-semibold text-xs sm:text-sm mt-0.5">
+                        {lightbox.role}
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <p className="text-white font-medium text-sm sm:text-base">{lightbox.alt}</p>
+                )}
+                <p className="text-slate-400 text-xs mt-1">Kundalgarh Premier League &bull; Official Tournament Archive</p>
               </div>
             )}
           </div>

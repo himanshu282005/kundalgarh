@@ -122,7 +122,7 @@ export default function LatestSeasonSection() {
                       <span>⭐</span>
                       <span>Season 2 Star Performers</span>
                     </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
                       {latestSeason.awards.playerOfSeries && (
                         <div className="bg-white/5 border border-amber-500/20 rounded-lg p-2.5">
                           <span className="text-[10px] text-amber-300 font-bold block uppercase">
@@ -159,6 +159,19 @@ export default function LatestSeasonSection() {
                           </span>
                           <span className="text-[10px] text-slate-400 truncate block">
                             {latestSeason.awards.bestBowler.team}
+                          </span>
+                        </div>
+                      )}
+                      {latestSeason.commentator && (
+                        <div className="bg-amber-500/10 border border-amber-400/30 rounded-lg p-2.5">
+                          <span className="text-[10px] text-amber-300 font-bold block uppercase flex items-center gap-1">
+                            <span>🎙️</span> Commentator
+                          </span>
+                          <span className="font-bold text-white text-xs sm:text-sm block truncate">
+                            {latestSeason.commentator.name}
+                          </span>
+                          <span className="text-[10px] text-amber-400/90 truncate block font-medium">
+                            {latestSeason.commentator.role}
                           </span>
                         </div>
                       )}

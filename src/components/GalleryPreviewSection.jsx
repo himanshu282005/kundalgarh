@@ -55,13 +55,17 @@ export default function GalleryPreviewSection() {
               {/* Caption Overlay on Bottom */}
               <div className="absolute bottom-0 inset-x-0 p-3 translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
                 <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-0.5">
-                  KPL Moment #{idx + 1}
+                  {img.category === 'commentator' ? '🎙️ Commentary Legend' : `KPL Moment #${idx + 1}`}
                 </span>
-                {img.alt && (
+                {img.title ? (
+                  <p className="text-[11px] sm:text-xs text-white font-bold leading-snug drop-shadow">
+                    {img.title} {img.role && <span className="text-amber-300 font-normal text-[10px] block sm:inline">&bull; {img.role}</span>}
+                  </p>
+                ) : img.alt ? (
                   <p className="text-[11px] sm:text-xs text-white line-clamp-2 font-medium leading-snug drop-shadow">
                     {img.alt}
                   </p>
-                )}
+                ) : null}
               </div>
             </div>
           ))}
@@ -110,10 +114,21 @@ export default function GalleryPreviewSection() {
                 className="w-full h-auto max-h-[80vh] object-contain mx-auto"
               />
             </div>
-            {activePhoto.alt && (
-              <p className="text-slate-300 text-xs sm:text-sm text-center mt-3 font-medium">
-                {activePhoto.alt}
-              </p>
+            {(activePhoto.title || activePhoto.alt) && (
+              <div className="text-center mt-3">
+                {activePhoto.title ? (
+                  <>
+                    <p className="text-white font-bold text-sm sm:text-base font-sports">{activePhoto.title}</p>
+                    {activePhoto.role && (
+                      <p className="text-amber-400 text-xs mt-0.5 font-medium">{activePhoto.role}</p>
+                    )}
+                  </>
+                ) : (
+                  <p className="text-slate-300 text-xs sm:text-sm font-medium">
+                    {activePhoto.alt}
+                  </p>
+                )}
+              </div>
             )}
           </div>
         </div>

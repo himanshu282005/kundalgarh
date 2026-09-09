@@ -58,14 +58,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Language note banner */}
-      <div className="bg-amber-500/10 border-b border-amber-500/20 py-2.5 px-4 sm:px-6">
-        <div className="max-w-content mx-auto flex items-center gap-2 text-xs sm:text-sm text-amber-300 font-medium">
-          <span className="text-base">🇮🇳</span>
-          <span>This page is available in both <strong>English</strong> and <strong>Hindi (हिंदी)</strong> for everyone in our community.</span>
-        </div>
-      </div>
-
       {/* ─── 1. Introduction ─────────────────────────────── */}
       <section className="py-12 sm:py-16">
         <div className="max-w-content mx-auto px-4 sm:px-6">

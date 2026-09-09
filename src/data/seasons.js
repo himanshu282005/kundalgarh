@@ -38,6 +38,14 @@ const seasons = [
           "Sunil Kalbeliya was a nightmare for batsmen throughout KPL Season 2, with his lethal deliveries and ability to pick up wickets at crucial moments earning him the Best Bowler award.",
       },
     },
+    commentator: {
+      name: "Mr. Lalit Pandya",
+      title: "Legendary Commentator",
+      role: "Voice of KPL",
+      image: "/images/signal-2026-09-08-18-03-05-978_003.jpg",
+      description:
+        "The iconic voice behind KPL's electrifying atmosphere. With unmatched passion, wit, and ball-by-ball commentary, Mr. Lalit Pandya brings every boundary, wicket, and championship moment to life for the entire village of Kundalgarh and YouTube live viewers worldwide.",
+    },
     liveStreams: [
       {
         day: "Day 1",
@@ -63,6 +71,7 @@ const seasons = [
       "/images/POTM-2026.jpg",
       "/images/BEST-BETSMAN-2026.jpg",
       "/images/best-bowler-2026.jpg",
+      "/images/signal-2026-09-08-18-03-05-978_003.jpg",
       "/images/signal-2026-09-08-18-03-05-978_008.jpg",
       "/images/signal-2026-09-08-18-03-05-978_002.jpg",
       "/images/gallery/signal-2026-09-08-14-57-16-873_006.jpg",

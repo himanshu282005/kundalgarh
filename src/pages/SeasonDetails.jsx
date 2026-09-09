@@ -200,10 +200,10 @@ export default function SeasonDetails() {
                 <div
                   key={team.id}
                   className={`card-hover p-4 sm:p-5 rounded-2xl border transition-all duration-300 ${team.status === 'Champion'
-                      ? 'bg-gradient-to-br from-amber-500/20 via-slate-900 to-slate-900 border-amber-400/50 shadow-xl shadow-amber-500/10'
-                      : team.status === 'Runner-up'
-                        ? 'bg-gradient-to-br from-slate-800 via-slate-900 to-slate-900 border-slate-600/60 shadow-lg'
-                        : 'bg-slate-900/80 border-white/10 hover:border-amber-400/40 shadow-md'
+                    ? 'bg-gradient-to-br from-amber-500/20 via-slate-900 to-slate-900 border-amber-400/50 shadow-xl shadow-amber-500/10'
+                    : team.status === 'Runner-up'
+                      ? 'bg-gradient-to-br from-slate-800 via-slate-900 to-slate-900 border-slate-600/60 shadow-lg'
+                      : 'bg-slate-900/80 border-white/10 hover:border-amber-400/40 shadow-md'
                     }`}
                 >
                   <div className="flex items-center justify-between mb-3">
@@ -229,6 +229,88 @@ export default function SeasonDetails() {
         </section>
       )}
 
+      {/* ─── Legendary Commentator Section ─────────────────────────────── */}
+      {season.commentator && (
+        <section className="py-12 sm:py-16 bg-gradient-to-b from-slate-900/60 to-slate-950 border-t border-white/10 relative overflow-hidden">
+          {/* Ambient Lighting */}
+          <div className="absolute top-1/2 left-0 w-80 h-80 bg-amber-500/10 blur-[100px] pointer-events-none" />
+          <div className="absolute bottom-0 right-10 w-80 h-80 bg-cyan-500/10 blur-[100px] pointer-events-none" />
+
+          <div className="relative max-w-content mx-auto px-4 sm:px-6">
+            <SectionHeading
+              title="The Voice of KPL / टूर्नामेंट की आवाज़"
+              subtitle="Honoring the legendary commentator who brings every ball, wicket, and boundary to life"
+            />
+
+            <div className="mt-8 stadium-glass-gold rounded-3xl border border-amber-500/40 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {/* Photo Column */}
+                <div className="lg:col-span-5 relative group">
+                  <div className="aspect-[3/4] sm:aspect-[4/5] rounded-2xl overflow-hidden border-2 border-amber-400/50 shadow-2xl bg-slate-950">
+                    <img
+                      src={season.commentator.image}
+                      alt={`${season.commentator.name} — ${season.commentator.title}`}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  {/* Floating Golden Badge */}
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs uppercase tracking-wider shadow-xl">
+                    <span>🎙️</span>
+                    <span>Legendary Commentator</span>
+                  </div>
+                </div>
+
+                {/* Info Column */}
+                <div className="lg:col-span-7 flex flex-col justify-center">
+                  <div className="inline-flex items-center gap-2 text-xs font-bold text-amber-400 bg-amber-400/15 border border-amber-400/30 px-3 py-1 rounded-full mb-3.5 w-fit uppercase tracking-wider">
+                    <span>👑</span>
+                    <span>Official Tournament Voice</span>
+                  </div>
+
+                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sports tracking-tight mb-1">
+                    {season.commentator.name}
+                  </h3>
+
+                  <p className="text-amber-400 text-base sm:text-lg font-bold font-sports uppercase tracking-wider mb-4" style={{ fontFamily: "'Noto Sans Devanagari', 'Mangal', sans-serif" }}>
+                    श्री ललित पंड्या &bull; टूर्नामेंट की धड़कन
+                  </p>
+
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                    {season.commentator.description}
+                  </p>
+
+                  {/* Hindi quote banner */}
+                  <div className="bg-amber-500/10 border-l-4 border-amber-400 p-3.5 rounded-r-xl mb-6">
+                    <p className="text-amber-300 text-xs sm:text-sm font-medium italic" style={{ fontFamily: "'Noto Sans Devanagari', 'Mangal', sans-serif" }}>
+                      &ldquo;हर गेंद में रोमांच, हर चौके-छक्के पर गूंज — आपकी आवाज़ के बिना KPL का मैदान अधूरा है।&rdquo;
+                    </p>
+                  </div>
+
+                  {/* Feature Highlights Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-center">
+                      <span className="text-lg block mb-1">🎙️</span>
+                      <p className="text-xs font-bold text-white uppercase tracking-wider">Live Commentary</p>
+                      <p className="text-[10px] text-slate-400">Ball-by-ball match thrill</p>
+                    </div>
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-center">
+                      <span className="text-lg block mb-1">⚡</span>
+                      <p className="text-xs font-bold text-white uppercase tracking-wider">Match Energy</p>
+                      <p className="text-[10px] text-slate-400">Keeping crowds roaring</p>
+                    </div>
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-center">
+                      <span className="text-lg block mb-1">🏆</span>
+                      <p className="text-xs font-bold text-white uppercase tracking-wider">Village Legend</p>
+                      <p className="text-[10px] text-slate-400">Revered across Kundalgarh</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ─── Live Streams Section ─────────────────────────────── */}
       {season.liveStreams && season.liveStreams.length > 0 && (
         <section className="py-12 sm:py-16 bg-slate-950 border-t border-white/10 relative overflow-hidden">
@@ -240,7 +322,7 @@ export default function SeasonDetails() {
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/30 rounded-full px-3 py-1 mb-3">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-xs font-bold text-red-400 uppercase tracking-wider">YouTube Live Broadcasts</span>
+                <span className="text-xs font-bold text-red-400 uppercase tracking-wider">YouTube Broadcasts</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-sports uppercase">
                 Watch Tournament Matches
