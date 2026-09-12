@@ -16,6 +16,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "autoprefixer": "^10.5.5",
     "postcss": "^8.5.28",
+    "react-helmet-async": "^3.0.0",
     "react-router-dom": "^7.18.3",
     "tailwindcss": "^3.4.19"
   }

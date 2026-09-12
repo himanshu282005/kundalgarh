@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import galleryImages, { galleryCategories } from '../data/gallery';
 import GalleryGrid from '../components/GalleryGrid';
 
@@ -12,6 +13,11 @@ export default function Gallery() {
 
   return (
     <div className="bg-slate-950 text-white min-h-screen pb-16">
+      <Helmet>
+        <title>KPL Photo Gallery — Kundalgarh Cricket Moments</title>
+        <meta name="description" content="Photos from KPL cricket matches in Kundalgarh — trophy celebrations, player awards, match action, and memorable moments from Season 1 (2025) and Season 2 (2026)." />
+        <link rel="canonical" href="https://kundalgarh.pages.dev/gallery" />
+      </Helmet>
       {/* ─── Cinematic Hero Header ─────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-white/10 bg-slate-950 py-12 sm:py-16">
         {/* Ambient Cricket Atmosphere Background */}

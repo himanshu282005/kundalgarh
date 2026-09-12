@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import seasons from '../data/seasons';
 import SectionHeading from '../components/SectionHeading';
 
@@ -21,6 +22,11 @@ function BilingualPara({ en, hi }) {
 export default function About() {
   return (
     <div className="bg-slate-950 text-white min-h-screen pb-16">
+      <Helmet>
+        <title>About KPL — Kundalgarh Premier League Cricket Tournament</title>
+        <meta name="description" content="About Kundalgarh Premier League — an annual cricket tournament in Kundalgarh village, Rajasthan, started in 2025. Played at the Kundalgarh Cricket Ground with 8 local teams." />
+        <link rel="canonical" href="https://kundalgarh.pages.dev/about" />
+      </Helmet>
       {/* ─── Hero Header ─────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-white/10 bg-slate-950 py-12 sm:py-16">
         {/* Ambient Ground Background */}
