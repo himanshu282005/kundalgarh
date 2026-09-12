@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import HeroSection from '../components/HeroSection';
 import TournamentSnapshot from '../components/TournamentSnapshot';
 import LatestSeasonSection from '../components/LatestSeasonSection';
@@ -9,11 +8,6 @@ import CommunitySection from '../components/CommunitySection';
 export default function Home() {
   return (
     <div className="bg-slate-950 min-h-screen text-white">
-      <Helmet>
-        <title>Kundalgarh Cricket | KPL — Kundalgarh Premier League</title>
-        <meta name="description" content="KPL is the cricket tournament of Kundalgarh village, Rajasthan. Krishna Travels won Season 2 (2026), Kanak Building Materials won Season 1 (2025). 8 teams, 15 matches per season." />
-        <link rel="canonical" href="https://kundalgarh.pages.dev/" />
-      </Helmet>
       {/* 1. HERO SECTION (75-90vh, cricket background, logo, badges, real status) */}
       <HeroSection />
 

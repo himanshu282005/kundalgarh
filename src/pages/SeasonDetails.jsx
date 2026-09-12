@@ -1,5 +1,4 @@
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import seasons from '../data/seasons';
 import teamsData from '../data/teams.json';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -64,14 +63,6 @@ export default function SeasonDetails() {
 
   return (
     <div className="bg-slate-950 text-white min-h-screen pb-16">
-      <Helmet>
-        <title>{season.title} — Kundalgarh Cricket (KPL)</title>
-        <meta
-          name="description"
-          content={`${season.title}: ${season.winner} won the KPL title, beating ${season.runnerUp} in the final at ${season.venue}. ${season.teams} teams, ${season.matches} matches. Player of the Tournament: ${season.awards?.playerOfSeries?.name}.`}
-        />
-        <link rel="canonical" href={`https://kundalgarh.pages.dev/season/${season.id}`} />
-      </Helmet>
       {/* ─── Cinematic Hero Header ─────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-white/10 bg-slate-950 pt-8 pb-12 sm:pb-16">
         {/* Ambient Ground Atmosphere Background */}
